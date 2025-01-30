@@ -227,4 +227,10 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     throw new ApiError(401, error?.message || "Invalid refresh token");
   }
 });
-export { registerUser, loginUser, logoutUser, refreshAccessToken };
+
+const getUser = asyncHandler(async (req, res) => {
+ const user = req?.user
+
+ return res.status(200).json(new ApiResponse(200, {user}, "user feched successfully"))
+});
+export { registerUser, loginUser, logoutUser, refreshAccessToken, getUser };
